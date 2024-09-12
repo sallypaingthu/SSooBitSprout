@@ -340,3 +340,40 @@ print(solution.longestConsecutive([]))                      # Output: 0
 print(solution.longestConsecutive([1, 2, 3, 4, 5]))        # Output: 5 (1, 2, 3, 4, 5)
 print(solution.longestConsecutive([5, 7, 8, 9, 10, 11]))   # Output: 6 (5, 6, 7, 8, 9, 10, 11)
 print("-" * 80)
+
+####################
+### TWO POINTERS ###
+####################
+# -----------------------------------------------------------------------------
+# 125. Valid Palindrome
+# -----------------------------------------------------------------------------
+# A phrase is a palindrome if, after converting all uppercase letters 
+# into lowercase letters and removing all non-alphanumeric characters, 
+# it reads the same forward and backward. 
+# Alphanumeric characters include letters and numbers.
+# Given a string s, return true if it is a palindrome, or false otherwise.
+print("125. Valid Palindrome")
+class Solution(object):
+    def isPalindrome(self, s):
+        # Initialize an empty string for filtered characters
+        filtered = ""
+        
+        # Filter out non-alphanumeric characters and convert to lowercase
+        for char in s:
+            if char.isalnum():
+                filtered += char.lower()
+        
+        # Check if the filtered string is a palindrome
+        left, right = 0, len(filtered) - 1
+        while left < right:
+            if filtered[left] != filtered[right]:
+                return False
+            left += 1
+            right -= 1
+        
+        return True
+
+solution = Solution()
+print(solution.isPalindrome("A man, a plan, a canal: Panama"))   # Output: True
+print(solution.isPalindrome("race a car"))                       # Output: False
+print("-" * 80)
